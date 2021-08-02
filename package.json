@@ -71,8 +71,7 @@
     "jsonfile": "^6.1.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
-    "openssl": "^1.1.0",
-    "twitch-js": "*"
+    "openssl": "^1.1.0"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.0.1",
