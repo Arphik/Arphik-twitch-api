@@ -6,6 +6,7 @@
   "scripts": {
     "build": "./node_modules/.bin/ts-node build.ts",
     "start:dev": "nodemon ./public/index.js",
+    "start": "node ./src/public/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
