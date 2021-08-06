@@ -6,13 +6,13 @@ const fs = require('fs');
 // use the express-static middleware
 app.use(express.static("public"));
 
-app.get('/', (req, res) => {
-  res.send('Server works');
+app.get("/", (req, res) => {
+  res.send("Server works");
 })
 
-app.post('/subcallback', (req, res) => {
+app.post("/subcallback", (req, res) => {
     console.log("response EventsSubCallback");
-    res.send('Subcallback worked!');
+    res.send("Subcallback worked!");
     res.status(200).end();
 });
 
