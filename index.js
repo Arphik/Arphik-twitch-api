@@ -3,7 +3,7 @@ const app = express();
 const https = require('https');
 const fs = require('fs');
 
-app.post('/EventsSubCallback', (req, res) => {
+app.post('/subcallback', (req, res) => {
     console.log("response EventsSubCallback");
     res.status(200).end();
 });
