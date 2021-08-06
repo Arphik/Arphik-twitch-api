@@ -6,8 +6,8 @@ const fs = require('fs');
 // use the express-static middleware
 app.use(express.static("public"));
 
-app.get('/', (req, res) => {
-  res.send('Server works');
+app.get("/", (req, res) => {
+  res.send("Server works");
 })
 
 app.post('/subcallback', (req, res) => {
@@ -17,14 +17,14 @@ app.post('/subcallback', (req, res) => {
 });
 
 
-// https.createServer({
-//     key: fs.readFileSync('server.key'),
-//     cert: fs.readFileSync('server.cert')
-//   }, app)
-//   .listen(443, function () {
-//     console.log(`Example app listening on port 443! Go to https://localhost:443/`);
-//   });
-
-app.listen(3000, () => {
-  console.log('Server is running!');
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+}, app)
+.listen(443, function () {
+  console.log(`Example app listening on port 443! Go to https://localhost:443/`);
 });
+
+// app.listen(3000, () => {
+//   console.log('Server is running!');
+// });
