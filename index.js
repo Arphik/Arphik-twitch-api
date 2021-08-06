@@ -16,13 +16,14 @@ app.post('/subcallback', (req, res) => {
     res.status(200).end();
 });
 
+const port = 3000;
 
 https.createServer({
     key: fs.readFileSync('server.key'),
     cert: fs.readFileSync('server.cert')
 }, app)
-.listen(443, function () {
-  console.log(`Example app listening on port 443! Go to https://localhost:443/`);
+.listen(port, function () {
+  console.log(`Example app listening on port ${port}! Go to https://localhost:${port}/`);
 });
 
 // app.listen(3000, () => {
