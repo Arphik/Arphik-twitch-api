@@ -9,6 +9,7 @@ app.get('/', (req, res) => {
 
 app.post('/subcallback', (req, res) => {
     console.log("response EventsSubCallback");
+    res.send('Subcallback worked!');
     res.status(200).end();
 });
 
