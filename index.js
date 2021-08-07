@@ -1,9 +1,9 @@
 const express = require('express');
 const favicon = require('serve-favicon');
 const app = express();
-const https = require('https');
+const http = require('https');
 const fs = require('fs');
-const io = require('socket.io')(https);
+const io = require('socket.io')(http);
 const url = require('url');
 const path = require('path');
 
@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
 
 const port = process.env.YOUR_PORT || process.env.PORT || 443;
 
-https
+http
 .createServer({
     key: fs.readFileSync('server.key'),
     cert: fs.readFileSync('server.cert')
