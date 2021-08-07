@@ -1,7 +1,7 @@
 const app = require('express')();
 const https = require('https');
 const fs = require('fs');
-const io = require('socket.io')(app);
+const io = require('socket.io')(https);
 const url = require('url');
 
 // use the express-static middleware
