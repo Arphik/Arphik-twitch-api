@@ -7,7 +7,7 @@ const url = require('url');
 
 // use the express-static middleware
 
-const clientResponseRef;
+let clientResponseRef;
 
 app.get("/", (req, res) => {
 
