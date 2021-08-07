@@ -1,8 +1,7 @@
-const express = require('express');
-const app = express();
+const app = require('express')();
 const https = require('https');
 const fs = require('fs');
-const io = require('socket.io');
+const io = require('socket.io')(app);
 const url = require('url');
 
 // use the express-static middleware
@@ -49,10 +48,10 @@ io.on('connection', (socket) => {
 const port = process.env.YOUR_PORT || process.env.PORT || 443;
 
 https
-// .createServer({
-//     key: fs.readFileSync('server.key'),
-//     cert: fs.readFileSync('server.cert')
-// }, app)
+.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+}, app)
 .listen(port, function () {
   console.log(`Example app listening on port ${port}! Go to https://localhost:${port}/`);
 });
