@@ -2,26 +2,57 @@ const express = require('express');
 const app = express();
 const https = require('https');
 const fs = require('fs');
+const io = require('socker.io');
+const url = require('url');
 
 // use the express-static middleware
-app.use(express.static("public"));
+
+const clientResponseRef;
 
 app.get("/", (req, res) => {
-  res.send("Server works");
+
+    const pathname = url.parse(req.url).pathname;
+
+    const obj = {
+      pathname: pathname,
+      method: 'get',
+      params: req.query,
+    }
+
+    io.emit('page-request', obj);
+
+    clientResponseRef = res;
 })
 
 app.post('/subcallback', (req, res) => {
-    console.log("response EventsSubCallback");
-    res.send('Subcallback worked!');
-    res.status(200).end();
+
+    const pathname = url.parse(req.url).pathname;
+
+    const obj = {
+      pathname: pathname,
+      method: 'post',
+      params: req.query,
+    }
+
+    io.emit('page-request', obj);
+
+    clientResponseRef = res;
 });
 
-const port = 3000;
+io.on('connection', (socket) => {
+  console.log('a node connected');
+  socket.on('page-response', (response) => {
+    clientResponseRef.send(response);
+  })
+})
 
-https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
-}, app)
+const port = process.env.YOUR_PORT || process.env.PORT || 443;
+
+https
+// .createServer({
+//     key: fs.readFileSync('server.key'),
+//     cert: fs.readFileSync('server.cert')
+// }, app)
 .listen(port, function () {
   console.log(`Example app listening on port ${port}! Go to https://localhost:${port}/`);
 });
