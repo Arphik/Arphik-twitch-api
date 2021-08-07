@@ -1,13 +1,17 @@
-const app = require('express')();
+const express = require('express');
+const favicon = require('serve-favicon');
+const app = express();
 const https = require('https');
 const fs = require('fs');
 const io = require('socket.io')(https);
 const url = require('url');
+const path = require('path');
 
 // use the express-static middleware
 
 let clientResponseRef;
-
+console.log('favicon path ', path.join(__dirname, 'favicon.ico'));
+app.use(favicon(path.join(__dirname, 'favicon.ico'))); 
 app.get("/", (req, res) => {
 
     const pathname = url.parse(req.url).pathname;
