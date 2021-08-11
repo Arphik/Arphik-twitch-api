@@ -10,7 +10,11 @@ export class NewFollowController {
     }
     @Post()
     followPost(@Req() req:  Request, @Res() res: Response) {
-        console.log("post req", req);
+        console.log("________________________________");
+        console.log("post req params", req.params);
+        console.log("________________________________");
+        console.log("post req body", req.body);
+        console.log("________________________________");
         res.status(200).send('Notifs follow Post callback');
     }
 }
